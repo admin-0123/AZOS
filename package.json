@@ -1,0 +1,55 @@
+{
+  "--": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json",
+  "name": "@azist/monorepo",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "--source": "",
+
+  "main": "out/azos-js.js",
+  "description": "Azos Dev root monorepo package",
+  "author": "Azist Group",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Dmitriy Khmaladze aka Zhabis, Ximik, itadapter, Rogognil",
+      "email": "d@zhabis.com",
+      "url": "http://zhabis.io"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azist/azos-js.git"
+  },
+  "keywords": [
+    "azos",
+    "unistack",
+    "sky"
+  ],
+  "bugs": {
+    "url": "https://github.com/azist/azos-js/issues"
+  },
+  "homepage": "https://github.com/azist/azos-js#readme",
+  "engines": {
+    "node": ">=18.18.0",
+    "npm": ">=9.8.0"
+  },
+  "workspaces": [
+    "packages/azos",
+    "packages/azos-ui"
+  ],
+  "scripts": {
+    "pack-local": "npm pack \"./packages/azos/\" --pack-destination=\"./out\" && npm pack \"./packages/azos-ui/\" --pack-destination=\"./out\"",
+    "build": "parcel build \"packages/azos/index.js\"",
+    "--test1": "echo \"Error: no test specified\" && exit 1",
+    "--test2": "set NODE_PATH=\"src/azos/\" && mocha \"./src/test/**/*.js\"",
+    "test": "node  packages/azos/test/app.mjs -- --filter",
+    "test-azos": "npm test -workspace=azos",
+    "ui": "parcel --no-cache --dist-dir \"./out/www\" \"./packages/azos-ui/test/index.htm\"",
+    "test-bro": "parcel --no-cache --dist-dir \"./out/www\" \"./packages/azos/test/index.htm\""
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "parcel": "^2.9.3"
+  }
+}
